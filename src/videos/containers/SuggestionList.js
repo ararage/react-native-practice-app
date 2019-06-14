@@ -1,36 +1,45 @@
-import React, { Component } from 'react';
-import { 
-    FlatList, 
-    Text
-} from 'react-native';
+// React
+import React, { Component } from "react";
 
-import SuggestionLayout from '../components/SuggestionLayout';
-import Empty from '../components/Empty';
-import VerticalSeparator from '../../sections/components/VerticalSeparator';
-import Suggestion from '../components/Suggestion';
+// Native
+import { FlatList } from "react-native";
 
-class SuggestionList extends Component {
-    renderEmpty = () => <Empty text="No hay sugerencias" />
-    itemSeparator = () => <VerticalSeparator />
-    renderItem = ({ item }) => {
-        return (
-            <Suggestion {...item}/>
-        );
-    };
-    keyExtractor = (item) => item.id.toString();
+//Redux
+import { connect } from "react-redux";
 
-    render(){
-        return(
-            <SuggestionLayout title="Recomendado para ti">
-                <FlatList
-                    keyExtractor={this.keyExtractor}
-                    data={this.props.list}
-                    ListEmptyComponent={ this.renderEmpty }
-                    ItemSeparatorComponent={ this.itemSeparator }
-                    renderItem={this.renderItem}/>
-            </SuggestionLayout>
-        );
-    }
+// Components
+import SuggestionLayout from "../components/SuggestionLayout";
+import Empty from "../components/Empty";
+import VerticalSeparator from "../../sections/components/VerticalSeparator";
+import Suggestion from "../components/Suggestion";
+
+function mapStateToProps(state) {
+  return {
+    list: state.suggestionList
+  };
 }
 
-export default SuggestionList;
+class SuggestionList extends Component {
+  renderEmpty = () => <Empty text="No hay sugerencias" />;
+  itemSeparator = () => <VerticalSeparator />;
+  renderItem = ({ item }) => {
+    return <Suggestion {...item} />;
+  };
+  keyExtractor = item => item.id.toString();
+
+  render() {
+    return (
+      <SuggestionLayout title="Recomendado para ti">
+        <FlatList
+          keyExtractor={this.keyExtractor}
+          data={this.props.list}
+          ListEmptyComponent={this.renderEmpty}
+          ItemSeparatorComponent={this.itemSeparator}
+          renderItem={this.renderItem}
+        />
+      </SuggestionLayout>
+    );
+  }
+}
+
+export default connect(mapStateToProps)(SuggestionList);

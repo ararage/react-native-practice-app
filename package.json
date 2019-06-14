@@ -12,7 +12,10 @@
     "react-native": "0.59.9",
     "react-native-slider": "^0.11.0",
     "react-native-vector-icons": "^6.5.0",
-    "react-native-video": "^4.4.1"
+    "react-native-video": "^4.4.1",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",

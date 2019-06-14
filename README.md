@@ -1,14 +1,11 @@
 # React Native Practice App
 
-This App was developed using the React Native Platzi Course, in this app we show the use of containers, 
+This App was developed using the React Native Platzi Course, in this app we show the use of containers,
 call to REST APIs with fetch, video player components and scrolls.
 
 ## Installation
 
-You need NodeJS (https://nodejs.org/en/) this either install the package manager [npm]
-(https://www.npmjs.com/).
-
-
+You need NodeJS (https://nodejs.org/en/) this either install the package manager [npm](https://www.npmjs.com/).
 
 ```bash
 npm i react-native-cli -g
