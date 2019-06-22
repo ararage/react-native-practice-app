@@ -22,8 +22,23 @@ function mapStateToProps(state) {
 class SuggestionList extends Component {
   renderEmpty = () => <Empty text="No hay sugerencias" />;
   itemSeparator = () => <VerticalSeparator />;
+  viewMovie = item => {
+    this.props.dispatch({
+      type: "SET_SELECTED_MOVIE",
+      payload: {
+        movie: item
+      }
+    });
+  };
   renderItem = ({ item }) => {
-    return <Suggestion {...item} />;
+    return (
+      <Suggestion
+        {...item}
+        onPress={() => {
+          this.viewMovie(item);
+        }}
+      />
+    );
   };
   keyExtractor = item => item.id.toString();
 

@@ -15,6 +15,7 @@ import Home from "../src/screens/containers/Home";
 import SuggestionList from "../src/videos/containers/SuggestionList";
 import CategoryList from "../src/videos/containers/CategoryList";
 import Player from "../src/player/containers/Player";
+import MovieContainer from "../src/screens/containers/MovieContainer";
 
 class AppLayout extends Component {
   state = {
@@ -43,17 +44,26 @@ class AppLayout extends Component {
         });*/
   }
   render() {
-    return (
-      <Home>
-        <Header />
-        <Player />
-        <Text>Buscador</Text>
-        <Text>Categorias</Text>
-        <CategoryList />
-        <SuggestionList />
-      </Home>
-    );
+    if (this.props.selectedMovie) {
+      return <MovieContainer />;
+    } else {
+      return (
+        <Home>
+          <Header />
+          <Text>Buscador</Text>
+          <Text>Categorias</Text>
+          <CategoryList />
+          <SuggestionList />
+        </Home>
+      );
+    }
   }
 }
 
-export default connect(null)(AppLayout);
+function mapStateToProps(state) {
+  return {
+    selectedMovie: state.selectedMovie
+  };
+}
+
+export default connect(mapStateToProps)(AppLayout);
